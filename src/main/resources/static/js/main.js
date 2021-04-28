@@ -32,7 +32,7 @@ function createRoom(event) {
 function joinRoom(event) {
     event.preventDefault();
     username = document.querySelector("#name-to-join").value.trim();
-    roomId = document.querySelector("#roomId").value.trim();
+    roomId = document.querySelector("#roomid").value.trim();
     connect();
 }
 
