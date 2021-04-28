@@ -12,14 +12,14 @@ public class ChatController {
 
     String roomId;
 
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/" + roomId)
+    @MessageMapping("/chat.sendMessage/{this.roomId}")
+    @SendTo("/topic/{this.roomId}")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
         return chatMessage;
     }
 
     @MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
+    @SendTo("/topic/{this.roomId}")
     public ChatMessage addUser(@Payload ChatMessage chatMessage,
                                SimpMessageHeaderAccessor simpMessageHeaderAccessor) {
         simpMessageHeaderAccessor.getSessionAttributes().put("username", chatMessage.getSender());

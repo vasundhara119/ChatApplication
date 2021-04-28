@@ -55,10 +55,11 @@ function connect(event) {
 function onConnected() {
     //subscribe to the public topic
     stompClient.subscribe("/topic/" + roomId, onMessageReceived);
+    console.log("subscribe function worked hopefully");
 
     //Tell your name to the server
     stompClient.send("/app/chat.addUser", {},
-        JSON.stringify({ sender: username, type: "JOIN" })
+        JSON.stringify({ sender: username, type: "JOIN", roomId: roomId })
     )
     connectingElement.classList.add("hidden");
 }
@@ -74,9 +75,10 @@ function sendMessage(event) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
-            type: 'CHAT'
+            type: 'CHAT',
+            roomId: roomId
         };
-        stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        stompClient.send("/app/chat.sendMessage/" + roomId, {}, JSON.stringify(chatMessage));
         messageInput.value = "";
     }
     event.preventDefault();
