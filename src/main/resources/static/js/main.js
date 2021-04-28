@@ -2,7 +2,7 @@
 
 var usernamePage = document.querySelector("#username-page");
 var chatPage = document.querySelector("#chat-page");
-var usernameForm = document.querySelector("#usernameForm");
+var createRoomForm = document.querySelector("#createRoomForm");
 var messageForm = document.querySelector("#messageForm");
 var messageInput = document.querySelector("#message");
 var messageArea = document.querySelector("#messageArea");
@@ -10,16 +10,37 @@ var connectingElement = document.querySelector(".connecting");
 
 var stompClient = null;
 var username = null;
+let roomId = null;
+
+let roomIds = [];
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
-function connect(event) {
-    username = document.querySelector("#name").value.trim();
+function randomNumberGenerator(min, max) {
+    return Math.floor((Math.random() * max) + min);
+}
 
-    if(username) {
+function createRoom() {
+    username = document.querySelector("#name-to-create").value.trim();
+    while (roomId == null && roomIds.includes(roomId)) {
+        roomId = randomNumberGenerator(1, 10);
+    }
+    roomIds.push(roomId);
+    connect();
+}
+
+function joinRoom() {
+    username = document.querySelector("#name-to-join").value.trim();
+    roomId = document.querySelector("#roomId").value.trim();
+    connect();
+}
+
+function connect(event) {
+
+    if (username) {
         usernamePage.classList.add("hidden");
         chatPage.classList.remove("hidden");
 
@@ -33,12 +54,11 @@ function connect(event) {
 
 function onConnected() {
     //subscribe to the public topic
-    stompClient.subscribe("/topic/public", onMessageReceived);
+    stompClient.subscribe("/topic/" + roomId, onMessageReceived);
 
     //Tell your name to the server
-    stompClient.send("/app/chat.addUser",
-                        {},
-                        JSON.stringify({sender: username, type: "JOIN"})
+    stompClient.send("/app/chat.addUser", {},
+        JSON.stringify({ sender: username, type: "JOIN" })
     )
     connectingElement.classList.add("hidden");
 }
@@ -50,7 +70,7 @@ function onError() {
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
-    if(messageContent && stompClient) {
+    if (messageContent && stompClient) {
         var chatMessage = {
             sender: username,
             content: messageInput.value,
@@ -64,9 +84,9 @@ function sendMessage(event) {
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
-    var messageElement  = document.createElement('li');
+    var messageElement = document.createElement('li');
 
-    if(message.type === 'JOIN') {
+    if (message.type === 'JOIN') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined!';
     } else if (message.type === 'LEAVE') {
@@ -107,5 +127,6 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
-usernameForm.addEventListener("submit", connect, true);
+createRoomForm.addEventListener("submit", createRoom, true);
+joinRoomForm.addEventListener("submit", joinRoom, true);
 messageForm.addEventListener("submit", sendMessage, true);
