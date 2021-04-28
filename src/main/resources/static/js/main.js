@@ -3,6 +3,7 @@
 var usernamePage = document.querySelector("#username-page");
 var chatPage = document.querySelector("#chat-page");
 var createRoomForm = document.querySelector("#createRoomForm");
+var joinRoomForm = document.querySelector("#joinRoomForm");
 var messageForm = document.querySelector("#messageForm");
 var messageInput = document.querySelector("#message");
 var messageArea = document.querySelector("#messageArea");
@@ -11,8 +12,6 @@ var connectingElement = document.querySelector(".connecting");
 var stompClient = null;
 var username = null;
 let roomId = null;
-
-let roomIds = [];
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -23,16 +22,15 @@ function randomNumberGenerator(min, max) {
     return Math.floor((Math.random() * max) + min);
 }
 
-function createRoom() {
+function createRoom(event) {
+    event.preventDefault();
     username = document.querySelector("#name-to-create").value.trim();
-    while (roomId == null && roomIds.includes(roomId)) {
-        roomId = randomNumberGenerator(1, 10);
-    }
-    roomIds.push(roomId);
+    roomId = randomNumberGenerator(1, 100);
     connect();
 }
 
-function joinRoom() {
+function joinRoom(event) {
+    event.preventDefault();
     username = document.querySelector("#name-to-join").value.trim();
     roomId = document.querySelector("#roomId").value.trim();
     connect();
@@ -41,6 +39,8 @@ function joinRoom() {
 function connect(event) {
 
     if (username) {
+        document.querySelector("#chatpage-roomid").innerHTML = roomId;
+
         usernamePage.classList.add("hidden");
         chatPage.classList.remove("hidden");
 

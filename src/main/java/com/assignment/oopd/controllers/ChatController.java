@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ChatController {
 
+    String roomId;
+
     @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
+    @SendTo("/topic/" + roomId)
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
         return chatMessage;
     }
@@ -21,6 +23,7 @@ public class ChatController {
     public ChatMessage addUser(@Payload ChatMessage chatMessage,
                                SimpMessageHeaderAccessor simpMessageHeaderAccessor) {
         simpMessageHeaderAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        this.roomId = chatMessage.getRoomId();
         return chatMessage;
     }
 }
