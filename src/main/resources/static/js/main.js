@@ -22,10 +22,14 @@ function randomNumberGenerator(min, max) {
     return Math.floor((Math.random() * max) + min);
 }
 
-function createRoom(event) {
+async function createRoom(event) {
     event.preventDefault();
     username = document.querySelector("#name-to-create").value.trim();
-    roomId = randomNumberGenerator(1, 100);
+    let varRoomIdAlreadyExists;
+    do {
+        roomId = randomNumberGenerator(101, 999);
+        varRoomIdAlreadyExists = await roomIdAlreadyExists(roomId);
+    } while(varRoomIdAlreadyExists);
     connect();
 }
 
@@ -49,13 +53,11 @@ function connect(event) {
 
         stompClient.connect({}, onConnected, onError);
     }
-    event.preventDefault();
 }
 
 function onConnected() {
     //subscribe to the public topic
     stompClient.subscribe("/topic/" + roomId, onMessageReceived);
-    console.log("subscribe function worked hopefully");
 
     //Tell your name to the server
     stompClient.send("/app/chat.addUser", {},
@@ -127,6 +129,22 @@ function getAvatarColor(messageSender) {
     }
     var index = Math.abs(hash % colors.length);
     return colors[index];
+}
+
+function roomIdAlreadyExists(roomId) {
+    var outsideVar;
+    $.ajax({
+        url : "/roomid-exists?room-id="+roomId,
+        type : "get",
+        async: false,
+        success : function(alreadyExists) {
+            outsideVar = alreadyExists
+        },
+        error: function() {
+            console.log("Error occured in ajax call to roomid-exists");
+        }
+    });
+    return outsideVar;
 }
 
 createRoomForm.addEventListener("submit", createRoom, true);
