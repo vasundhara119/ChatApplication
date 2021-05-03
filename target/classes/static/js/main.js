@@ -27,9 +27,8 @@ async function createRoom(event) {
     username = document.querySelector("#name-to-create").value.trim();
     let varRoomIdAlreadyExists;
     do {
-        roomId = randomNumberGenerator(1, 3);
+        roomId = randomNumberGenerator(101, 999);
         varRoomIdAlreadyExists = await roomIdAlreadyExists(roomId);
-        console.log(varRoomIdAlreadyExists);
     } while(varRoomIdAlreadyExists);
     connect();
 }
@@ -59,6 +58,7 @@ function connect(event) {
 function onConnected() {
     //subscribe to the public topic
     stompClient.subscribe("/topic/" + roomId, onMessageReceived);
+    stompClient.subscribe("/topic/"+username, onInfoReceived)
 
     //Tell your name to the server
     stompClient.send("/app/chat.addUser", {},
@@ -123,6 +123,11 @@ function onMessageReceived(payload) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
+function onInfoReceived(payload) {
+    var info = JSON.parse(payload.body);
+    console.log(info.content);
+}
+
 function getAvatarColor(messageSender) {
     var hash = 0;
     for (var i = 0; i < messageSender.length; i++) {
@@ -133,10 +138,6 @@ function getAvatarColor(messageSender) {
 }
 
 function roomIdAlreadyExists(roomId) {
-    // $.get("/roomid-exists?room-id="+roomId, function(alreadyExists){
-    //     console.log(alreadyExists, roomId);
-    //     return alreadyExists;
-    // });
     var outsideVar;
     $.ajax({
         url : "/roomid-exists?room-id="+roomId,

@@ -23,9 +23,15 @@ public class ChatController {
     private SimpMessagingTemplate messagingTemplate;
 
     @MessageMapping("/chat.sendMessage/{this.roomId}")
-    @SendTo("/topic/{this.roomId}")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
-        return chatMessage;
+    public void sendMessage(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor simpMessageHeaderAccessor) {
+        String session_username = simpMessageHeaderAccessor.getSessionAttributes().get("username").toString();
+
+        if(!session_username.equals(chatMessage.getSender()) ) {
+            chatMessage.setContent("Unauthorised User");
+            messagingTemplate.convertAndSend("/topic/"+session_username,chatMessage);
+            return;
+        }
+        messagingTemplate.convertAndSend("/topic/"+this.roomId, chatMessage);
     }
 
     @MessageMapping("/chat.addUser")

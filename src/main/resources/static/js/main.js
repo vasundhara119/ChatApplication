@@ -58,6 +58,7 @@ function connect(event) {
 function onConnected() {
     //subscribe to the public topic
     stompClient.subscribe("/topic/" + roomId, onMessageReceived);
+    stompClient.subscribe("/topic/"+username, onInfoReceived)
 
     //Tell your name to the server
     stompClient.send("/app/chat.addUser", {},
@@ -120,6 +121,11 @@ function onMessageReceived(payload) {
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
+}
+
+function onInfoReceived(payload) {
+    var info = JSON.parse(payload.body);
+    console.log(info.content);
 }
 
 function getAvatarColor(messageSender) {
