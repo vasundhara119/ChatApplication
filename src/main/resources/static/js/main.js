@@ -37,7 +37,12 @@ function joinRoom(event) {
     event.preventDefault();
     username = document.querySelector("#name-to-join").value.trim();
     roomId = document.querySelector("#roomid").value.trim();
-    connect();
+    if(roomIdAlreadyExists(roomId)) {
+        connect();
+    }
+    else {
+        alert("Room Id " + roomId + " does not exists");
+    }
 }
 
 function connect(event) {
