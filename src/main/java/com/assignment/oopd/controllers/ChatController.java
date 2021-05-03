@@ -38,6 +38,7 @@ public class ChatController {
     public void addUser(@Payload ChatMessage chatMessage,
                                SimpMessageHeaderAccessor simpMessageHeaderAccessor) {
         simpMessageHeaderAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        simpMessageHeaderAccessor.getSessionAttributes().put("roomId", chatMessage.getRoomId());
         this.roomId = chatMessage.getRoomId();
         if(!roomIds.contains(roomId)) {
             this.roomIds.add(roomId);
