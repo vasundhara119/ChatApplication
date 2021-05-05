@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Verdana", sans-serif;
+  width: 100%;
+  min-height: 100vh;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("../assets/pic2_final.png");
+  min-height: 500px;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navigation {
+  min-height: 18%;
+  background-color: #114e60;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+.navigation a {
+  text-decoration: none;
+  color: #fff;
+  padding: 20px 20px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.hero .banner {
+  position: relative;
+  height: 100vh;
+}
+.hero .banner .banner-upper-wave svg {
+  margin-top: -10px;
+}
+.hero .banner .banner-main {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+}
+.hero .banner .banner-lower-wave {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  bottom: 0;
+}
+
+.btn {
+  background-color: #114e60;
+  color: #f4eee8;
+  font-family: "Verdana", sans-serif;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.about-us {
+  height: 100vh;
+}
+.about-us .column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+.about-us .column2 {
+  float: left;
+  width: 50%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+.about-us .card {
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+.about-us .about-section {
+  padding: 50px;
+  text-align: center;
+  color: #fff;
+}
+.about-us .container {
+  padding: 0 16px;
+}
+.about-us .container::after,
+.about-us .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.about-us .title {
+  color: grey;
+}
+.about-us .button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+.about-us .button:hover {
+  background-color: #555;
+}
+@media screen and (max-width: 650px) {
+  .about-us .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.footer .svg-container {
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0);
+  display: block;
+}
+.footer .footer-content {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+  background-color: #114e60;
+}
