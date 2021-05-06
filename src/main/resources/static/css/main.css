@@ -178,6 +178,7 @@ button.accent {
 
 #chat-page ul li p {
     margin: 0;
+
 }
 
 #chat-page .event-message {
@@ -196,7 +197,9 @@ button.accent {
     padding-left: 68px;
     position: relative;
 }
-
+#chat-page .right-aligned{
+    text-align: right;
+}
 #chat-page .chat-message i {
     position: absolute;
     width: 42px;
@@ -217,6 +220,7 @@ button.accent {
 #chat-page .chat-message span {
     color: #333;
     font-weight: 600;
+    text-align: right;
 }
 
 #chat-page .chat-message p {
