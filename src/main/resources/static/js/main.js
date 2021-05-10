@@ -7,11 +7,14 @@ var joinRoomForm = document.querySelector("#joinRoomForm");
 var messageForm = document.querySelector("#messageForm");
 var messageInput = document.querySelector("#message");
 var messageArea = document.querySelector("#messageArea");
+var groupchat = document.querySelector("#group-chat");
+var onechat = document.querySelector("#one-chat");
 var connectingElement = document.querySelector(".connecting");
 
 var stompClient = null;
 var username = null;
 let roomId = null;
+var capacity = 2;
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -22,9 +25,24 @@ function randomNumberGenerator(min, max) {
     return Math.floor((Math.random() * max) + min);
 }
 
+function groupOrOneCheck() {
+    if (groupchat.checked) {
+        document.getElementById('check').style.visibility = 'visible';
+        document.getElementById("room-capacity").value = 5;
+        document.getElementById("room-capacity").disabled = false;
+        document.getElementById('check').style.visibility = 'visible';
+    }
+    
+    else {
+        document.getElementById('check').style.visibility = 'visible';
+        document.getElementById("room-capacity").value = 2;
+        document.getElementById("room-capacity").disabled = true;    }
+}
+
 async function createRoom(event) {
     event.preventDefault();
     username = document.querySelector("#name-to-create").value.trim();
+    capacity = document.querySelector("#room-capacity").value.trim();
     let varRoomIdAlreadyExists;
     do {
         roomId = randomNumberGenerator(101, 999);
@@ -37,11 +55,16 @@ function joinRoom(event) {
     event.preventDefault();
     username = document.querySelector("#name-to-join").value.trim();
     roomId = document.querySelector("#roomid").value.trim();
-    if(roomIdAlreadyExists(roomId)) {
+    if (roomIdAlreadyExists(roomId) && roomIsNotFull(roomId)) {
         connect();
     }
     else {
-        alert("Room Id " + roomId + " does not exists");
+        if (roomIdAlreadyExists(roomId) == false) {
+            alert("Room Id " + roomId + " does not exists");
+        }
+        else if(roomIsNotFull(roomId)== false) {
+            alert("This Room Capacity Is Full");
+        }
     }
 }
 
@@ -67,7 +90,7 @@ function onConnected() {
 
     //Tell your name to the server
     stompClient.send("/app/chat.addUser", {},
-        JSON.stringify({ sender: username, type: "JOIN", roomId: roomId })
+        JSON.stringify({ sender: username, type: "JOIN", roomId: roomId , roomCapacity : capacity})
     )
     connectingElement.classList.add("hidden");
 }
@@ -102,6 +125,7 @@ function onMessageReceived(payload) {
     } else if (message.type === 'LEAVE') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' left!';
+        afterUserLeft(message.roomId);
     } else {
         messageElement.classList.add('chat-message');
 
@@ -169,6 +193,42 @@ function roomIdAlreadyExists(roomId) {
         }
     });
     return outsideVar;
+}
+
+function roomIsNotFull(roomId) {
+    var outsideVar;
+    $.ajax({
+        url : "/roomid-capacity-check?room-id="+roomId,
+        type : "get",
+        async: false,
+        success : function(isFull) {
+            outsideVar = isFull;
+        },
+        error: function() {
+            console.log("Error occured in ajax call to roomid-capacity-check");
+        }
+    });
+    return outsideVar;
+}
+
+var loaded=false;
+function afterUserLeft(roomId) {
+    
+    jQuery("#loader").show();
+    var outsideVar;
+    $.ajax({
+        url : "/roomid-capacity-decrease?room-id="+roomId,
+        type : "get",
+        async: false,
+        success : function(abc) {
+            console.log("User Left");
+        },
+        error: function() {
+            console.log("Error occured in ajax call to roomid-capacity-decrease");
+        }
+    });
+    
+    return false;
 }
 
 createRoomForm.addEventListener("submit", createRoom, true);

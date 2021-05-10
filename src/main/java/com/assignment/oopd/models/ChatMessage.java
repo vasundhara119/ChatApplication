@@ -6,10 +6,19 @@ public class ChatMessage {
     private String content;
     private String sender;
     private String roomId;
+    private String roomCapacity;
 
 
     public String getRoomId() {
         return roomId;
+    }
+
+    public String getRoomCapacity() {
+        return roomCapacity;
+    }
+
+    public void setRoomCapacity(String capacity) {
+        this.roomCapacity = capacity;
     }
 
     public void setRoomId(String roomId) {
