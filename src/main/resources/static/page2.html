@@ -20,6 +20,17 @@
                         <input type="text" id="name-to-create" placeholder="Username" autocomplete="off" class="form-control" />
                     </div>
                     <div class="form-group">
+                        <input type="radio" id="group-chat" name ="Chat" value="group" class="form-control" onclick="javascript:groupOrOneCheck();" />
+                        <label for="age1"> Group Chat</label><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" id="one-chat" name ="Chat" value="one" class="form-control" onclick="javascript:groupOrOneCheck();"/>
+                        <label for="age1"> Personal Chat</label>
+                    </div>
+                    <div class="form-group" id="check" style = "visibility:hidden">
+                        <input type="number" id="room-capacity" placeholder="Room capacity" autocomplete="off" class="form-control" min= "2"  max = "100" default = "2"/>
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="accent username-submit">Create Room</button>
                     </div>
                 </form>
