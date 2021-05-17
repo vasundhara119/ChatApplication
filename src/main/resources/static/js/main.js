@@ -1,5 +1,6 @@
 "use strict";
 
+var userForms = document.querySelector(".user-forms");
 var usernamePage = document.querySelector("#username-page");
 var chatPage = document.querySelector("#chat-page");
 var createRoomForm = document.querySelector("#createRoomForm");
@@ -30,22 +31,16 @@ function randomNumberGenerator(min, max) {
      var numbers = /^[0-9]+$/;
 
       if (user == "") {
-
          alert(" Username Cannot be empty");
          return false;
-
      }
       else if (user.match(numbers)) {
-
           alert("Username of String  only");
           return false;
       }
-
-
          return true;
-
-
  }
+
  function evaluation(username,roomId){
  var user=document.getElementById("name-to-join").value;
  var roomId=document.getElementById("roomid").value;
@@ -55,26 +50,20 @@ function randomNumberGenerator(min, max) {
          alert(" User and RoomId Required ,Cannot be empty");
          return false;
      }
-
     else  if (user   == "") {
-
          alert(" UserName Required ,Cannot be empty");
          return false;
-
      }
      else if(roomId == "")
      {
          alert(" roomId Required ,Cannot be empty");
          return false;
      }
-
      else if (user.match(numbers)) {
          alert("Username in Strings only");
          return false;
-
      }
   return true;
-
  }
 
 function groupOrOneCheck() {
@@ -98,13 +87,11 @@ async function createRoom(event) {
     let varRoomIdAlreadyExists;
     if((validation(username)) ){
         do {
-
             roomId = randomNumberGenerator(101, 999);
             varRoomIdAlreadyExists = await roomIdAlreadyExists(roomId);
         } while (varRoomIdAlreadyExists);
         connect();
     }
-
 }
 
 function joinRoom(event) {
@@ -125,6 +112,9 @@ function joinRoom(event) {
 }
 
 function connect(event) {
+
+    userForms.classList.add("hidden");
+    chatPage.classList.remove("hidden");
 
     if (username) {
         document.querySelector("#chatpage-roomid").innerHTML = roomId;
