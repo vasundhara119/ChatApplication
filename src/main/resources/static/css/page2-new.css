@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(17, 78, 96, 0.4);
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.user-forms {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-forms #username-page {
+  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
+  border-radius: 14px;
+  display: flex;
+  overflow: hidden;
+  min-width: 800px;
+}
+.user-forms #username-page h1 {
+  padding: 20px 0;
+  font-size: 26px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.user-forms #username-page .create-room-container {
+  min-height: 500px;
+  color: #114e60;
+  background-color: #fff;
+  padding: 20px;
+  flex: 1;
+}
+.user-forms #username-page .join-room-container {
+  min-height: 500px;
+  background-color: #114e60;
+  color: orange;
+  flex: 1;
+  padding: 20px;
+}
+.user-forms #username-page .join-room-container button {
+  background-color: orange;
+  color: white;
+}
+.user-forms #username-page form {
+  margin: 40px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+input {
+  width: 100%;
+}
+
+input[type=text],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  background-color: #114e60;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #114e60;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}

@@ -9,6 +9,8 @@ var messageInput = document.querySelector("#message");
 var messageArea = document.querySelector("#messageArea");
 var connectingElement = document.querySelector(".connecting");
 
+
+
 var stompClient = null;
 var username = null;
 let roomId = null;
@@ -22,26 +24,83 @@ function randomNumberGenerator(min, max) {
     return Math.floor((Math.random() * max) + min);
 }
 
+ function validation(user){
+     var user = document.getElementById("name-to-create").value;
+     var numbers = /^[0-9]+$/;
+
+      if (user == "") {
+
+         alert(" Username Cannot be empty");
+         return false;
+
+     }
+      else if (user.match(numbers)) {
+
+          alert("Username of String  only");
+          return false;
+      }
+
+
+         return true;
+
+
+ }
+ function evaluation(username,roomId){
+ var user=document.getElementById("name-to-join").value;
+ var roomId=document.getElementById("roomid").value;
+     var numbers = /^[0-9]+$/;
+  if( (user == "" && roomId == ""))
+     {
+         alert(" User and RoomId Required ,Cannot be empty");
+         return false;
+     }
+
+    else  if (user   == "") {
+
+         alert(" UserName Required ,Cannot be empty");
+         return false;
+
+     }
+     else if(roomId == "")
+     {
+         alert(" roomId Required ,Cannot be empty");
+         return false;
+     }
+
+     else if (user.match(numbers)) {
+         alert("Username in Strings only");
+         return false;
+
+     }
+  return true;
+
+ }
+
 async function createRoom(event) {
     event.preventDefault();
     username = document.querySelector("#name-to-create").value.trim();
     let varRoomIdAlreadyExists;
-    do {
-        roomId = randomNumberGenerator(101, 999);
-        varRoomIdAlreadyExists = await roomIdAlreadyExists(roomId);
-    } while(varRoomIdAlreadyExists);
-    connect();
+    if((validation(username)) ){
+        do {
+
+            roomId = randomNumberGenerator(101, 999);
+            varRoomIdAlreadyExists = await roomIdAlreadyExists(roomId);
+        } while (varRoomIdAlreadyExists);
+        connect();
+    }
+
 }
 
 function joinRoom(event) {
     event.preventDefault();
     username = document.querySelector("#name-to-join").value.trim();
     roomId = document.querySelector("#roomid").value.trim();
-    if(roomIdAlreadyExists(roomId)) {
-        connect();
-    }
-    else {
-        alert("Room Id " + roomId + " does not exists");
+    if(evaluation(username,roomId)) {
+        if (roomIdAlreadyExists(roomId)) {
+            connect();
+        } else {
+            alert("Room Id " + roomId + " does not exists");
+        }
     }
 }
 
@@ -92,6 +151,7 @@ function sendMessage(event) {
     event.preventDefault();
 }
 
+
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
     var messageElement = document.createElement('li');
@@ -104,6 +164,7 @@ function onMessageReceived(payload) {
         message.content = message.sender + ' left!';
     } else {
         messageElement.classList.add('chat-message');
+
         if(message.sender!=username) {
             var avatarElement = document.createElement('i');
             var avatarText = document.createTextNode(message.sender[0]);
