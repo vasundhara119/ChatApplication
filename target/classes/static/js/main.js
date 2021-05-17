@@ -41,7 +41,7 @@ function joinRoom(event) {
         connect();
     }
     else {
-        alert("Room Id " + roomId + "does not exists");
+        alert("Room Id " + roomId + " does not exists");
     }
 }
 
