@@ -3,6 +3,7 @@
 var userForms = document.querySelector(".user-forms");
 var usernamePage = document.querySelector("#username-page");
 var chatPage = document.querySelector("#chat-page");
+var chatContainer = document.querySelector(".chat-container");
 var createRoomForm = document.querySelector("#createRoomForm");
 var joinRoomForm = document.querySelector("#joinRoomForm");
 var messageForm = document.querySelector("#messageForm");
@@ -26,45 +27,39 @@ function randomNumberGenerator(min, max) {
     return Math.floor((Math.random() * max) + min);
 }
 
- function validation(user){
-     var user = document.getElementById("name-to-create").value;
-     var numbers = /^[0-9]+$/;
+function validation(user) {
+    var user = document.getElementById("name-to-create").value;
+    var numbers = /^[0-9]+$/;
 
-      if (user == "") {
-         alert(" Username Cannot be empty");
-         return false;
-     }
-      else if (user.match(numbers)) {
-          alert("Username of String  only");
-          return false;
-      }
-         return true;
- }
+    if (user == "") {
+        alert(" Username Cannot be empty");
+        return false;
+    } else if (user.match(numbers)) {
+        alert("Username of String  only");
+        return false;
+    }
+    return true;
+}
 
- function evaluation(username,roomId){
- var user=document.getElementById("name-to-join").value;
- var roomId=document.getElementById("roomid").value;
-     var numbers = /^[0-9]+$/;
-  if( (user == "" && roomId == ""))
-     {
-         alert(" User and RoomId Required ,Cannot be empty");
-         return false;
-     }
-    else  if (user   == "") {
-         alert(" UserName Required ,Cannot be empty");
-         return false;
-     }
-     else if(roomId == "")
-     {
-         alert(" roomId Required ,Cannot be empty");
-         return false;
-     }
-     else if (user.match(numbers)) {
-         alert("Username in Strings only");
-         return false;
-     }
-  return true;
- }
+function evaluation(username, roomId) {
+    var user = document.getElementById("name-to-join").value;
+    var roomId = document.getElementById("roomid").value;
+    var numbers = /^[0-9]+$/;
+    if ((user == "" && roomId == "")) {
+        alert(" User and RoomId Required ,Cannot be empty");
+        return false;
+    } else if (user == "") {
+        alert(" UserName Required ,Cannot be empty");
+        return false;
+    } else if (roomId == "") {
+        alert(" roomId Required ,Cannot be empty");
+        return false;
+    } else if (user.match(numbers)) {
+        alert("Username in Strings only");
+        return false;
+    }
+    return true;
+}
 
 function groupOrOneCheck() {
     if (groupchat.checked) {
@@ -72,12 +67,11 @@ function groupOrOneCheck() {
         document.getElementById("room-capacity").value = 5;
         document.getElementById("room-capacity").disabled = false;
         document.getElementById('check').style.visibility = 'visible';
-    }
-
-    else {
+    } else {
         document.getElementById('check').style.visibility = 'visible';
         document.getElementById("room-capacity").value = 2;
-        document.getElementById("room-capacity").disabled = true;    }
+        document.getElementById("room-capacity").disabled = true;
+    }
 }
 
 async function createRoom(event) {
@@ -85,7 +79,7 @@ async function createRoom(event) {
     username = document.querySelector("#name-to-create").value.trim();
     capacity = document.querySelector("#room-capacity").value.trim();
     let varRoomIdAlreadyExists;
-    if((validation(username)) ){
+    if ((validation(username))) {
         do {
             roomId = randomNumberGenerator(101, 999);
             varRoomIdAlreadyExists = await roomIdAlreadyExists(roomId);
@@ -98,16 +92,16 @@ function joinRoom(event) {
     event.preventDefault();
     username = document.querySelector("#name-to-join").value.trim();
     roomId = document.querySelector("#roomid").value.trim();
-    if(evaluation(username,roomId)) {
+    if (evaluation(username, roomId)) {
         if (roomIdAlreadyExists(roomId)) {
             connect();
         } else {
             if (roomIdAlreadyExists(roomId) == false) {
                 alert("Room Id " + roomId + " does not exists");
-            }
-            else if(roomIsNotFull(roomId)== false) {
+            } else if (roomIsNotFull(roomId) == false) {
                 alert("This Room Capacity Is Full");
-            }        }
+            }
+        }
     }
 }
 
@@ -132,11 +126,11 @@ function connect(event) {
 function onConnected() {
     //subscribe to the public topic
     stompClient.subscribe("/topic/" + roomId, onMessageReceived);
-    stompClient.subscribe("/topic/"+username, onInfoReceived)
+    stompClient.subscribe("/topic/" + username, onInfoReceived)
 
     //Tell your name to the server
     stompClient.send("/app/chat.addUser", {},
-        JSON.stringify({ sender: username, type: "JOIN", roomId: roomId , roomCapacity : capacity})
+        JSON.stringify({ sender: username, type: "JOIN", roomId: roomId, roomCapacity: capacity })
     )
     connectingElement.classList.add("hidden");
 }
@@ -175,7 +169,7 @@ function onMessageReceived(payload) {
     } else {
         messageElement.classList.add('chat-message');
 
-        if(message.sender!=username) {
+        if (message.sender != username) {
             var avatarElement = document.createElement('i');
             var avatarText = document.createTextNode(message.sender[0]);
             avatarElement.appendChild(avatarText);
@@ -184,16 +178,13 @@ function onMessageReceived(payload) {
             messageElement.appendChild(avatarElement);
         }
         var usernameElement = document.createElement('span');
-        if(message.sender==username)
-        {
+        if (message.sender == username) {
 
             messageElement.classList.add('right-aligned');
 
             var usernameText = document.createTextNode("You");
 
-        }
-        else
-        {
+        } else {
             var usernameText = document.createTextNode(message.sender);
         }
 
@@ -208,7 +199,9 @@ function onMessageReceived(payload) {
     messageElement.appendChild(textElement);
 
     messageArea.appendChild(messageElement);
-    messageArea.scrollTop = messageArea.scrollHeight;
+    // messageAreaDiv = document.querySelector(".messageArea-div");
+    // messageAreaDiv.scrollTop = messageAreaDiv.scrollHeight;
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
 function onInfoReceived(payload) {
@@ -228,10 +221,10 @@ function getAvatarColor(messageSender) {
 function roomIdAlreadyExists(roomId) {
     var outsideVar;
     $.ajax({
-        url : "/roomid-exists?room-id="+roomId,
-        type : "get",
+        url: "/roomid-exists?room-id=" + roomId,
+        type: "get",
         async: false,
-        success : function(alreadyExists) {
+        success: function(alreadyExists) {
             outsideVar = alreadyExists
         },
         error: function() {
@@ -244,10 +237,10 @@ function roomIdAlreadyExists(roomId) {
 function roomIsNotFull(roomId) {
     var outsideVar;
     $.ajax({
-        url : "/roomid-capacity-check?room-id="+roomId,
-        type : "get",
+        url: "/roomid-capacity-check?room-id=" + roomId,
+        type: "get",
         async: false,
-        success : function(isFull) {
+        success: function(isFull) {
             outsideVar = isFull;
         },
         error: function() {
@@ -257,16 +250,17 @@ function roomIsNotFull(roomId) {
     return outsideVar;
 }
 
-var loaded=false;
+var loaded = false;
+
 function afterUserLeft(roomId) {
 
     jQuery("#loader").show();
     var outsideVar;
     $.ajax({
-        url : "/roomid-capacity-decrease?room-id="+roomId,
-        type : "get",
+        url: "/roomid-capacity-decrease?room-id=" + roomId,
+        type: "get",
         async: false,
-        success : function(abc) {
+        success: function(abc) {
             console.log("User Left");
         },
         error: function() {

@@ -20,15 +20,15 @@
                         <input type="text" id="name-to-create" placeholder="Username" autocomplete="off" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <input type="radio" id="group-chat" name ="Chat" value="group" class="form-control" onclick="javascript:groupOrOneCheck();" />
+                        <input type="radio" id="group-chat" name="Chat" value="group" class="form-control" onclick="javascript:groupOrOneCheck();" />
                         <label for="age1"> Group Chat</label><br>
                     </div>
                     <div class="form-group">
-                        <input type="radio" id="one-chat" name ="Chat" value="one" class="form-control" onclick="javascript:groupOrOneCheck();"/>
+                        <input type="radio" id="one-chat" name="Chat" value="one" class="form-control" onclick="javascript:groupOrOneCheck();" />
                         <label for="age1"> Personal Chat</label>
                     </div>
-                    <div class="form-group" id="check" style = "visibility:hidden">
-                        <input type="number" id="room-capacity" placeholder="Room capacity" autocomplete="off" class="form-control" min= "2"  max = "100" default = "2"/>
+                    <div class="form-group" id="check" style="visibility:hidden">
+                        <input type="number" id="room-capacity" placeholder="Room capacity" autocomplete="off" class="form-control" min="2" max="100" default="2" />
                     </div>
                     <div class="form-group">
                         <button type="submit" class="accent username-submit">Create Room</button>
@@ -53,25 +53,32 @@
         </div>
     </div>
     <div id="chat-page" class="hidden">
-        <h1>RoomId: <span id="chatpage-roomid"></span></h1>
-        <div class="chat-container">
+        <div class="chat-outer">
             <div class="chat-header">
-                <h2>Welcome to Spring Boot Chat Application</h2>
+                <!-- <h2>Welcome to Spring Boot Chat Application</h2> -->
+                <h1>RoomId: <span id="chatpage-roomid"></span></h1>
             </div>
-            <div class="connecting">
-                Connecting...
-            </div>
-            <ul id="messageArea">
+            <div class="chat-container">
 
-            </ul>
-            <form id="messageForm" name="messageForm">
-                <div class="form-group">
-                    <div class="input-group clearfix">
-                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control" />
-                        <button type="submit" class="primary">Send</button>
-                    </div>
+                <div class="connecting">
+                    Connecting...
                 </div>
-            </form>
+                <div class="messageArea-div">
+                    <ul id="messageArea">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="send-message-div">
+                <form id="messageForm" name="messageForm">
+                    <div class="form-group">
+                        <div class="input-group clearfix">
+                            <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control" />
+                            <button type="submit" class="primary">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
