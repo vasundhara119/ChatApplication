@@ -1,73 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Welcome to Spring Boot Chat Application</title>
-    <link rel="stylesheet" href="/css/main.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Landing page</title>
 </head>
 
-<body>
-    <noscript>
-    <h2>Sorry! Your browser doesn't support Javascript</h2>
-</noscript>
-
-    <div id="username-page">
-        <div class="username-page-container">
-            <h1 class="title">Enter your username</h1>
-            <form id="createRoomForm" name="createRoomForm">
-                <div class="form-group">
-                    <input type="text" id="name-to-create" placeholder="Username" autocomplete="off" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="accent username-submit">Create Room</button>
-                </div>
-            </form>
+<body class="parallax">
+    <div class="hero">
+        <div class="navigation">
+            <a href="index.html">HOME</a>
+            <a href="#about-us">ABOUT US</a>
+            <a href="#footer">FOOTER</a>
         </div>
-
-        <div class="username-page-container">
-            <h1 class="title">Enter your username and room id</h1>
-            <form id="joinRoomForm" name="joinRoomForm">
-                <div class="form-group">
-                    <input type="text" id="name-to-join" placeholder="Username" autocomplete="off" class="form-control" />
+        <!-- <div class="parallax"></div> -->
+        <div class="banner">
+            <div class="banner-upper-wave">
+                <svg id="wave" style="transform:rotate(180deg); transition: 0.3s" viewBox="0 0 1440 130" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(17, 78, 96, 1)" offset="0%"></stop><stop stop-color="rgba(17, 78, 96, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,26L80,21.7C160,17,320,9,480,4.3C640,0,800,0,960,15.2C1120,30,1280,61,1440,78C1600,95,1760,100,1920,97.5C2080,95,2240,87,2400,80.2C2560,74,2720,69,2880,69.3C3040,69,3200,74,3360,73.7C3520,74,3680,69,3840,67.2C4000,65,4160,65,4320,62.8C4480,61,4640,56,4800,60.7C4960,65,5120,78,5280,82.3C5440,87,5600,82,5760,75.8C5920,69,6080,61,6240,65C6400,69,6560,87,6720,82.3C6880,78,7040,52,7200,52C7360,52,7520,78,7680,84.5C7840,91,8000,78,8160,65C8320,52,8480,39,8640,47.7C8800,56,8960,87,9120,93.2C9280,100,9440,82,9600,73.7C9760,65,9920,65,10080,69.3C10240,74,10400,82,10560,75.8C10720,69,10880,48,11040,47.7C11200,48,11360,69,11440,80.2L11520,91L11520,130L11440,130C11360,130,11200,130,11040,130C10880,130,10720,130,10560,130C10400,130,10240,130,10080,130C9920,130,9760,130,9600,130C9440,130,9280,130,9120,130C8960,130,8800,130,8640,130C8480,130,8320,130,8160,130C8000,130,7840,130,7680,130C7520,130,7360,130,7200,130C7040,130,6880,130,6720,130C6560,130,6400,130,6240,130C6080,130,5920,130,5760,130C5600,130,5440,130,5280,130C5120,130,4960,130,4800,130C4640,130,4480,130,4320,130C4160,130,4000,130,3840,130C3680,130,3520,130,3360,130C3200,130,3040,130,2880,130C2720,130,2560,130,2400,130C2240,130,2080,130,1920,130C1760,130,1600,130,1440,130C1280,130,1120,130,960,130C800,130,640,130,480,130C320,130,160,130,80,130L0,130Z"></path></svg>
+            </div>
+            <div class="banner-main">
+                <div class="typewriter">
+                    <h3>Welcome to Chat Application!</h3>
                 </div>
-                <div class="form-group">
-                    <input type="text" id="roomid" placeholder="Room Id" autocomplete="off" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="accent username-submit">Join a room</button>
-                </div>
-            </form>
+                <form action="page2.html">
+                    <button class="btn banner-btn">Create/Join Room</button>
+                </form>
+            </div>
+            <!-- <div class="banner-lower-wave">
+                <svg id="wave" style="transform:rotate(0deg); transition: 0.3s" viewBox="0 0 1440 130" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(17, 78, 96, 1)" offset="0%"></stop><stop stop-color="rgba(17, 78, 96, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,26L80,21.7C160,17,320,9,480,4.3C640,0,800,0,960,15.2C1120,30,1280,61,1440,78C1600,95,1760,100,1920,97.5C2080,95,2240,87,2400,80.2C2560,74,2720,69,2880,69.3C3040,69,3200,74,3360,73.7C3520,74,3680,69,3840,67.2C4000,65,4160,65,4320,62.8C4480,61,4640,56,4800,60.7C4960,65,5120,78,5280,82.3C5440,87,5600,82,5760,75.8C5920,69,6080,61,6240,65C6400,69,6560,87,6720,82.3C6880,78,7040,52,7200,52C7360,52,7520,78,7680,84.5C7840,91,8000,78,8160,65C8320,52,8480,39,8640,47.7C8800,56,8960,87,9120,93.2C9280,100,9440,82,9600,73.7C9760,65,9920,65,10080,69.3C10240,74,10400,82,10560,75.8C10720,69,10880,48,11040,47.7C11200,48,11360,69,11440,80.2L11520,91L11520,130L11440,130C11360,130,11200,130,11040,130C10880,130,10720,130,10560,130C10400,130,10240,130,10080,130C9920,130,9760,130,9600,130C9440,130,9280,130,9120,130C8960,130,8800,130,8640,130C8480,130,8320,130,8160,130C8000,130,7840,130,7680,130C7520,130,7360,130,7200,130C7040,130,6880,130,6720,130C6560,130,6400,130,6240,130C6080,130,5920,130,5760,130C5600,130,5440,130,5280,130C5120,130,4960,130,4800,130C4640,130,4480,130,4320,130C4160,130,4000,130,3840,130C3680,130,3520,130,3360,130C3200,130,3040,130,2880,130C2720,130,2560,130,2400,130C2240,130,2080,130,1920,130C1760,130,1600,130,1440,130C1280,130,1120,130,960,130C800,130,640,130,480,130C320,130,160,130,80,130L0,130Z"></path></svg>
+            </div> -->
         </div>
     </div>
 
-    <div id="chat-page" class="hidden">
-        <h1>RoomId: <span id="chatpage-roomid"></span></h1>
-        <div class="chat-container">
-            <div class="chat-header">
-                <h2>Welcome to Spring Boot Chat Application</h2>
-            </div>
-            <div class="connecting">
-                Connecting...
-            </div>
-            <ul id="messageArea">
-
-            </ul>
-            <form id="messageForm" name="messageForm">
-                <div class="form-group">
-                    <div class="input-group clearfix">
-                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control" />
-                        <button type="submit" class="primary">Send</button>
+    <div class="about-us" id="about-us">
+        <h1 style="text-align:center" class="">Meet Our Team</h1>
+        <div class="row">
+            <div class="column">
+                <div class="card">
+                    <!-- <img src="/w3images/team1.jpg" alt="Jane" style="width:100%"> -->
+                    <div class="container">
+                        <h2>Vasundhara</h2>
+                        <!-- <p class="title">CEO & Founder</p> -->
+                        <p>BITS id: 2020hs70019</p>
+                        <p>2020hs70019@wilp.bits-pilani.ac.in</p>
+                        <!-- <p><button class="button">Contact</button></p> -->
                     </div>
                 </div>
-            </form>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <!-- <img src="/w3images/team1.jpg" alt="Jane" style="width:100%"> -->
+                    <div class="container">
+                        <h2>Aditi Sahai</h2>
+                        <!-- <p class="title">CEO & Founder</p> -->
+                        <p>BITS id: 2020hs70019</p>
+                        <p>2020hs70019@wilp.bits-pilani.ac.in</p>
+                        <!-- <p><button class="button">Contact</button></p> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <!-- <img src="/w3images/team1.jpg" alt="Jane" style="width:100%"> -->
+                    <div class="container">
+                        <h2>Pooja Hegde</h2>
+                        <!-- <p class="title">CEO & Founder</p> -->
+                        <p>BITS id: 2020hs70019</p>
+                        <p>2020hs70019@wilp.bits-pilani.ac.in</p>
+                        <!-- <p><button class="button">Contact</button></p> -->
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <!-- <div class="row"> -->
+            <div class="column">
+                <div class="card">
+                    <!-- <img src="/w3images/team1.jpg" alt="Jane" style="width:100%"> -->
+                    <div class="container">
+                        <h2>P. Avinash Rao</h2>
+                        <!-- <p class="title">CEO & Founder</p> -->
+                        <p>BITS id: 2020hs70019</p>
+                        <p>2020hs70019@wilp.bits-pilani.ac.in</p>
+                        <!-- <p><button class="button">Contact</button></p> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="card">
+                    <!-- <img src="/w3images/team1.jpg" alt="Jane" style="width:100%"> -->
+                    <div class="container">
+                        <h2>Aman Chitransh</h2>
+                        <!-- <p class="title">CEO & Founder</p> -->
+                        <p>BITS id: 2020hs70019</p>
+                        <p>2020hs70019@wilp.bits-pilani.ac.in</p>
+                        <!-- <p><button class="button">Contact</button></p> -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="footer" id="footer">
+        <div class="banner-lower-wave">
+            <div class="svg-container">
+                <svg id="wave" style="transform:rotate(0deg); transition: 0.3s" viewBox="0 0 1440 130" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0"><stop stop-color="rgba(17, 78, 96, 1)" offset="0%"></stop><stop stop-color="rgba(17, 78, 96, 1)" offset="100%"></stop></linearGradient></defs><path style="transform:translate(0, 0px); opacity:1" fill="url(#sw-gradient-0)" d="M0,26L80,21.7C160,17,320,9,480,4.3C640,0,800,0,960,15.2C1120,30,1280,61,1440,78C1600,95,1760,100,1920,97.5C2080,95,2240,87,2400,80.2C2560,74,2720,69,2880,69.3C3040,69,3200,74,3360,73.7C3520,74,3680,69,3840,67.2C4000,65,4160,65,4320,62.8C4480,61,4640,56,4800,60.7C4960,65,5120,78,5280,82.3C5440,87,5600,82,5760,75.8C5920,69,6080,61,6240,65C6400,69,6560,87,6720,82.3C6880,78,7040,52,7200,52C7360,52,7520,78,7680,84.5C7840,91,8000,78,8160,65C8320,52,8480,39,8640,47.7C8800,56,8960,87,9120,93.2C9280,100,9440,82,9600,73.7C9760,65,9920,65,10080,69.3C10240,74,10400,82,10560,75.8C10720,69,10880,48,11040,47.7C11200,48,11360,69,11440,80.2L11520,91L11520,130L11440,130C11360,130,11200,130,11040,130C10880,130,10720,130,10560,130C10400,130,10240,130,10080,130C9920,130,9760,130,9600,130C9440,130,9280,130,9120,130C8960,130,8800,130,8640,130C8480,130,8320,130,8160,130C8000,130,7840,130,7680,130C7520,130,7360,130,7200,130C7040,130,6880,130,6720,130C6560,130,6400,130,6240,130C6080,130,5920,130,5760,130C5600,130,5440,130,5280,130C5120,130,4960,130,4800,130C4640,130,4480,130,4320,130C4160,130,4000,130,3840,130C3680,130,3520,130,3360,130C3200,130,3040,130,2880,130C2720,130,2560,130,2400,130C2240,130,2080,130,1920,130C1760,130,1600,130,1440,130C1280,130,1120,130,960,130C800,130,640,130,480,130C320,130,160,130,80,130L0,130Z"></path></svg>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#114e60" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg> -->
+            </div>
+        </div>
+        <div class="footer-content">
+            <p>Copyright © 2021 All Rights Reserved by team ..............</p>
+        </div>
+    </div>
 </body>
 
 </html>

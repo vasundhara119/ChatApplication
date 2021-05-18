@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Welcome to Spring Boot Chat Application</title>
+    <link rel="stylesheet" href="css/page2-new.css" />
+</head>
+
+<body>
+    <noscript>
+    <h2>Sorry! Your browser doesn't support Javascript</h2>
+</noscript>
+    <div class="user-forms">
+        <div id="username-page">
+            <div class="create-room-container">
+                <h1 class="title">Create Room</h1>
+                <form id="createRoomForm" name="createRoomForm">
+                    <div class="form-group">
+                        <input type="text" id="name-to-create" placeholder="Username" autocomplete="off" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" id="group-chat" name="Chat" value="group" class="form-control" onclick="javascript:groupOrOneCheck();" />
+                        <label for="age1"> Group Chat</label><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="radio" id="one-chat" name="Chat" value="one" class="form-control" onclick="javascript:groupOrOneCheck();" />
+                        <label for="age1"> Personal Chat</label>
+                    </div>
+                    <div class="form-group" id="check" style="visibility:hidden">
+                        <input type="number" id="room-capacity" placeholder="Room capacity" autocomplete="off" class="form-control" min="2" max="100" default="2" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="accent username-submit">Create Room</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="join-room-container">
+                <h1 class="title">Join a room</h1>
+                <form id="joinRoomForm" name="joinRoomForm">
+                    <div class="form-group">
+                        <input type="text" id="name-to-join" placeholder="Username" autocomplete="off" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="roomid" placeholder="Room Id" autocomplete="off" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="accent username-submit">Join a room</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="chat-page" class="hidden">
+        <div class="chat-outer">
+            <div class="chat-header">
+                <!-- <h2>Welcome to Spring Boot Chat Application</h2> -->
+                <h1>RoomId: <span id="chatpage-roomid"></span></h1>
+            </div>
+            <div class="chat-container">
+
+                <div class="connecting">
+                    Connecting...
+                </div>
+                <div class="messageArea-div">
+                    <ul id="messageArea">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="send-message-div">
+                <form id="messageForm" name="messageForm">
+                    <div class="form-group">
+                        <div class="input-group clearfix">
+                            <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control" />
+                            <button type="submit" class="primary">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>

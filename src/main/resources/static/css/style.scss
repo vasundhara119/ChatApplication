@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+$primary-color: #114e60;
+$secondary-color: #f4eee8;
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    // font-family: "Verdana", sans-serif;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    min-height: 100vh;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("../assets/pic2_final.png");
+    min-height: 500px;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navigation {
+    min-height: 18%;
+    background-color: $primary-color;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    a {
+        text-decoration: none;
+        color: #fff;
+        padding: 20px 20px;
+        text-transform: uppercase;
+        font-size: 16px;
+    }
+}
+
+.hero {
+    .banner {
+        position: relative;
+        height: 100vh;
+        .banner-upper-wave svg {
+            margin-top: -10px;
+            // background-color: $primary-color;
+            // background-color: rgba(255, 255, 255, 0.3);
+            //     // background-blend-mode: screen;
+        }
+        .banner-main {
+            position: relative;
+            top: 15%;
+            // width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            .typewriter {
+                display: inline-block;
+            }
+            h3 {
+                font-size: 50px;
+                color: $primary-color;
+            }
+            .banner-btn {
+                margin-top: 250px;
+                padding: 20px 60px;
+                border-radius: 30px;
+                font-size: 17px;
+                letter-spacing: 2px;
+                font-weight: 600;
+            }
+        }
+        .banner-lower-wave {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            bottom: 0;
+            // background-color: rgba(255, 255, 255);
+        }
+    }
+}
+
+.typewriter h3 {
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+    animation: typing 5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+
+/* The typing effect */
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+    to {
+        width: 100%
+    }
+}
+
+
+/* The typewriter cursor effect */
+
+@keyframes blink-caret {
+    from,
+    to {
+        border-color: transparent
+    }
+    50% {
+        border-color: orange;
+    }
+}
+
+.btn {
+    background-color: $primary-color;
+    color: #fff;
+    // font-family: "Verdana", sans-serif;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.about-us {
+    // height: 100vh;
+    width: 100%;
+    background-color: #fff;
+    padding: 50px;
+    // text-align: center;
+    // color: #fff;
+    h1 {
+        color: $primary-color;
+    }
+    .row {
+        display: flex;
+        // width: 100%;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        // flex-wrap: wrap;
+    }
+    .column {
+        margin-bottom: 16px;
+        padding: 0 8px;
+    }
+    .card {
+        color: $primary-color;
+        border: 3px solid $primary-color;
+        margin: 30px auto;
+        width: 400px;
+        height: 200px;
+        border-radius: 40px;
+        box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
+        transition: .6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .card:hover {
+        // transform: scale(0.9, 0.9);
+        // animation: shake 1s;
+        // animation-iteration-count: .5s;
+        background-color: $primary-color;
+        color: #fff;
+        box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25), -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+    }
+    .about-section {
+        padding: 50px;
+        text-align: center;
+        // background-color: rgba($color: $primary-color, $alpha: 0.5);
+        color: #fff;
+    }
+    .container {
+        padding: 0 16px;
+    }
+    .title {
+        color: grey;
+    }
+    .button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+    }
+    .button:hover {
+        background-color: #555;
+    }
+    @media screen and (max-width: 650px) {
+        .column {
+            width: 100%;
+            display: block;
+        }
+    }
+}
+
+.footer {
+    // margin-top: -400px;
+    // height: 80vh;
+    .svg-container {
+        margin: 0;
+        background-color: rgba(255, 255, 255, 1);
+        display: block;
+    }
+    .footer-content {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        margin-top: -10px;
+        background-color: $primary-color;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}

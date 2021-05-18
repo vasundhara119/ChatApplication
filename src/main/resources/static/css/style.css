@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  min-height: 100vh;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("../assets/pic2_final.png");
+  min-height: 500px;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navigation {
+  min-height: 18%;
+  background-color: #114e60;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+.navigation a {
+  text-decoration: none;
+  color: #fff;
+  padding: 20px 20px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.hero .banner {
+  position: relative;
+  height: 100vh;
+}
+.hero .banner .banner-upper-wave svg {
+  margin-top: -10px;
+}
+.hero .banner .banner-main {
+  position: relative;
+  top: 15%;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero .banner .banner-main .typewriter {
+  display: inline-block;
+}
+.hero .banner .banner-main h3 {
+  font-size: 50px;
+  color: #114e60;
+}
+.hero .banner .banner-main .banner-btn {
+  margin-top: 250px;
+  padding: 20px 60px;
+  border-radius: 30px;
+  font-size: 17px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+.hero .banner .banner-lower-wave {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  bottom: 0;
+}
+
+.typewriter h3 {
+  overflow: hidden;
+  /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid orange;
+  /* The typwriter cursor */
+  white-space: nowrap;
+  /* Keeps the content on a single line */
+  margin: 0 auto;
+  /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em;
+  /* Adjust as needed */
+  animation: typing 5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+.btn {
+  background-color: #114e60;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.about-us {
+  width: 100%;
+  background-color: #fff;
+  padding: 50px;
+}
+.about-us h1 {
+  color: #114e60;
+}
+.about-us .row {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.about-us .column {
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+.about-us .card {
+  color: #114e60;
+  border: 3px solid #114e60;
+  margin: 30px auto;
+  width: 400px;
+  height: 200px;
+  border-radius: 40px;
+  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
+  transition: 0.6s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about-us .card:hover {
+  background-color: #114e60;
+  color: #fff;
+  box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25), -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+}
+.about-us .about-section {
+  padding: 50px;
+  text-align: center;
+  color: #fff;
+}
+.about-us .container {
+  padding: 0 16px;
+}
+.about-us .title {
+  color: grey;
+}
+.about-us .button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+.about-us .button:hover {
+  background-color: #555;
+}
+@media screen and (max-width: 650px) {
+  .about-us .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.footer .svg-container {
+  margin: 0;
+  background-color: white;
+  display: block;
+}
+.footer .footer-content {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+  background-color: #114e60;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
