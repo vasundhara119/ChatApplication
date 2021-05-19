@@ -26,7 +26,8 @@ body {
   align-items: center;
 }
 .user-forms #username-page {
-  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
+  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25),
+    -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
   border-radius: 14px;
   display: flex;
   overflow: hidden;
@@ -60,6 +61,44 @@ body {
   margin: 40px 0;
 }
 
+#radio {
+  margin-top: 10px;
+}
+
+#group-chat {
+  margin-top: -1px;
+  vertical-align: middle;
+  display: inline-block;
+  /* vertical-align: bottom; */
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: gray;
+}
+
+#one-chat {
+  margin-top: -1px;
+  vertical-align: middle;
+  display: inline-block;
+  /* vertical-align: bottom; */
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: gray;
+}
+
+#room-capacity {
+  margin-top: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
 #chat-page {
   min-height: 100vh;
   display: flex;
@@ -76,7 +115,8 @@ body {
   min-height: 600px;
   max-height: 600px;
   overflow: hidden;
-  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25), -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
+  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25),
+    -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
 }
 #chat-page .chat-outer .chat-header {
   text-align: center;
@@ -101,7 +141,7 @@ body {
 }
 #chat-page .chat-outer .chat-container .messageArea-div ul {
   list-style-type: none;
-  background-color: #FFF;
+  background-color: #fff;
   margin: 0;
   padding: 0 20px 0px 20px;
 }
@@ -161,7 +201,7 @@ input {
   width: 100%;
 }
 
-input[type=text],
+input[type="text"],
 select {
   width: 100%;
   padding: 12px 20px;
@@ -184,7 +224,7 @@ button {
   font-size: 16px;
 }
 
-input[type=submit] {
+input[type="submit"] {
   width: 100%;
   background-color: #114e60;
   color: white;
@@ -195,6 +235,6 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+input[type="submit"]:hover {
   background-color: #45a049;
 }
